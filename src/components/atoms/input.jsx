@@ -1,13 +1,12 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-export const Input = ({onChange, type, placeholder}) => {
+export const Input = ({onChange, type, placeholder, margin}) => {
     return (
-        <div className="col-auto mb-3">
+        <div className={`col-auto ${margin}`}>
             <input 
                 type={type} 
                 className="form-control" 
-                id="inputPassword2" 
                 placeholder={placeholder}
                 onChange={onChange} 
             />
