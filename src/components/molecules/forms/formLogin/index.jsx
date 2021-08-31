@@ -13,18 +13,20 @@ export const FormLogin = () => {
                     style={{background: "#FFFFFF"}}
                 >
                     <Typography 
-                        style="h5 p-2" 
+                        styles="h5 p-2" 
                         text="Autenticarse" 
                     />
                     <Input 
                         type="email" 
                         placeholder="email@example.com" 
                         text="Email" 
+                        margin="mb-3"
                     />
                     <Input 
                         type="password" 
                         placeholder="Contraseña" 
-                        text="Contraseña" 
+                        text="Contraseña"
+                        margin="mb-3"
                     />
                     <Button 
                         text="Iniciar sesión" 

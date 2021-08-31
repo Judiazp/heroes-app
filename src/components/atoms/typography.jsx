@@ -1,8 +1,8 @@
 import React from 'react'
 
-export const Typography = ({style, text}) => {
+export const Typography = ({styles, text}) => {
     return (
-        <p className={style}>
+        <p className={styles}>
             { text }
         </p>
     )
