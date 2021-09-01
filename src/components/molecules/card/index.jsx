@@ -2,7 +2,7 @@ import React from 'react'
 import { Typography } from '../../atoms/typography'
 import { Button } from '../../atoms/button'
 
-export const Card = ({character, img, powerstats}) => {
+export const Card = ({character, img, powerstats, preview}) => {
     return (
         <div className="card m-1" style={{maxWidth: "400px"}}>
             <div className="row g-0">
@@ -23,10 +23,12 @@ export const Card = ({character, img, powerstats}) => {
                         <Typography styles="card-text" text={`Poder: Super fuerza`} />
                         <div className="d-flex  justify-content-around">
                             <Button 
-                                text="Detalles"
+                                text={preview ? 'Agregar' : 'Detalles'}
+                                size="sm"
                             />
                             <Button 
-                                text="Eliminar"
+                                text={preview ? 'Quitar' : 'Eliminar'}
+                                size="sm"
                             />
                         </div>
                     </div>

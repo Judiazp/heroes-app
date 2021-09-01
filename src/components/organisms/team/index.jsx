@@ -14,11 +14,9 @@ export const Team = () => {
                         >
                             <GridHero characterType="hero" />
                         </div>
-
                     )
                 })
             }
         </div>
-
     )
 }
