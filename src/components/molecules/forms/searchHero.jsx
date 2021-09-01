@@ -7,7 +7,7 @@ export const SearchHero = () => {
         <div 
             className="row mt-5"
         >
-            <div className="col-12 border d-flex justify-content-center align-items-center">
+            <div className="col-12 d-flex justify-content-center align-items-center">
                 <form 
                     style={{height: "100%"}}
                     className="d-flex align-items-center m-3"
