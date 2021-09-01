@@ -1,6 +1,6 @@
 import React from 'react'
 import { Header } from '../../molecules/header'
-import { SearchHero } from '../../molecules/forms/searchHero'
+import { AddTeam } from '../../molecules/forms/AddTeam'
 import { Team } from '../../organisms/team'
 
 export const Home = () => {
@@ -11,7 +11,7 @@ export const Home = () => {
                 className="container-fluid"
                 style={{minHeight: "calc(100vh - 70px)"}}    
             >
-                <SearchHero />
+                <AddTeam />
                 <Team />
             </div>
         </div>
