@@ -1,26 +1,18 @@
 import React from 'react'
 import { Header } from '../../molecules/header'
 import { SearchHero } from '../../molecules/forms/searchHero'
-import { GridHero } from '../../organisms/Grid'
+import { Team } from '../../organisms/team'
 
 export const Home = () => {
     return (
         <div>
             <Header logueado={true} />
             <div 
-                className="container"
+                className="container-fluid"
                 style={{minHeight: "calc(100vh - 70px)"}}    
             >
                 <SearchHero />
-                
-                <div className="row">
-                    <div className="col-6 border">
-                        <GridHero characterType="hero" />
-                    </div>
-                    <div className="col-6 border">
-                        <GridHero characterType="villain" />
-                    </div>
-                </div>
+                <Team />
             </div>
         </div>
     )

@@ -4,7 +4,7 @@ import { Button } from '../../atoms/button'
 
 export const Card = ({character, img, powerstats}) => {
     return (
-        <div className="card mb-3" style={{maxWidth: "400px"}}>
+        <div className="card m-1" style={{maxWidth: "400px"}}>
             <div className="row g-0">
                 <div className="col-md-4">
                     <img 
