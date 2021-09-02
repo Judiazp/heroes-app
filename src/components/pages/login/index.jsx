@@ -12,7 +12,9 @@ export const Login = () => {
                 className="container d-flex justify-content-center align-items-center" 
                 style={{height: "calc(100vh - 70px)"}}
             >
-                <FormLogin />
+                <div className="col-4">
+                    <FormLogin />
+                </div>
             </div>
         </>
     )

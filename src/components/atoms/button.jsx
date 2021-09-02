@@ -6,6 +6,7 @@ export const Button = ({text, click, type, size}) => {
             className={`btn btn-info btn-${size}`} 
             type={type}
             onClick={ click } 
+
         >
             { text }
         </button>
