@@ -2,7 +2,18 @@ import React from 'react'
 import { Typography } from '../../atoms/typography'
 import { Button } from '../../atoms/button'
 
-export const Card = ({character, img, powerstats, preview}) => {
+export const Card = ({
+    character, 
+    img, 
+    powerstats, 
+    preview, 
+    // funcDetails, 
+    // funcAdd, 
+    // funcDelete, 
+    // funcRemove
+    methodAdd,
+    methodRemove
+}) => {
     return (
         <div className="card m-1" style={{maxWidth: "400px"}}>
             <div className="row g-0">
@@ -25,10 +36,12 @@ export const Card = ({character, img, powerstats, preview}) => {
                             <Button 
                                 text={preview ? 'Agregar' : 'Detalles'}
                                 size="sm"
+                                click={methodAdd}
                             />
                             <Button 
                                 text={preview ? 'Quitar' : 'Eliminar'}
                                 size="sm"
+                                click={methodRemove}
                             />
                         </div>
                     </div>

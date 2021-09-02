@@ -15,6 +15,14 @@ export const GridHero = ({array, nameTeam}) => {
                         <div className=" col-6">
                             <Card 
                                 character={item}
+                                methodAdd={(e) => {
+                                    e.preventDefault()
+                                    console.log('Viendo detalles');
+                                }}
+                                methodRemove={(e) => {
+                                    e.preventDefault()
+                                    console.log('Eliminando heroe');
+                                }}
                             />
                         </div>
                     )
