@@ -3,8 +3,10 @@ import { Button } from '../../atoms/button'
 import { Input } from '../../atoms/input'
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import axios from 'axios';
 
 export const SearchHero = () => {
+
     const formik = useFormik({
         initialValues: {
             hero: '',
@@ -13,10 +15,16 @@ export const SearchHero = () => {
             hero: Yup.string().max(15,'Máximo 15 caracteres')
                 .required('Campo requerido')
         }),
-        onSubmit: values => {
-            alert(JSON.stringify(values, null, 2))
+        onSubmit: async values => {
+            try {
+                const response = await axios.get(`https://superheroapi.com/api/103079892118789/search/${values.hero}`)
+                console.log(response.data);
+            } catch (error) {
+                console.log(error);
+            }
         }
     })
+
     return (
         <form 
             onSubmit={formik.handleSubmit}
