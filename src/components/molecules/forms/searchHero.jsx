@@ -17,7 +17,7 @@ export const SearchHero = () => {
         }),
         onSubmit: async values => {
             try {
-                const response = await axios.get(`https://superheroapi.com/api/103079892118789/search/${values.hero}`)
+                const response = await axios.get(`/api/103079892118789/search/${values.hero}`)
                 console.log(response.data);
             } catch (error) {
                 console.log(error);
