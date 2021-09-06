@@ -5,7 +5,30 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 
-export const SearchHero = () => {
+export const SearchHero = ({team, setTeam}) => {
+
+    const addHero = (data) => {
+        if (data.results[0].biography.alignment === 'good') { 
+            if (team.heros.length < 3) {
+                setTeam({
+                    ...team,
+                    heros: [data, ...team.heros]
+                })  
+            } else {
+                console.log('No puedes agregar mas de tres heroes');
+            }
+        }
+        if (data.results[0].biography.alignment === 'bad') { 
+            if (team.villains.length < 3) {
+                setTeam({
+                    ...team,
+                    villains: [data, ...team.villains]
+                })           
+            } else {
+                console.log('No puedes agregar mas de tres villanos');
+            }
+        }
+    }
 
     const formik = useFormik({
         initialValues: {
@@ -17,8 +40,8 @@ export const SearchHero = () => {
         }),
         onSubmit: async values => {
             try {
-                const response = await axios.get(`/api/103079892118789/search/${values.hero}`)
-                console.log(response.data);
+                const {data} = await axios.get(`/api/103079892118789/search/${values.hero}`)
+                addHero(data)
             } catch (error) {
                 console.log(error);
             }
@@ -46,6 +69,7 @@ export const SearchHero = () => {
                 text="Buscar"
                 size="sm"
                 type="submit"
+                // disabled={hero.data ? true : false}
             />
         </form>
     )

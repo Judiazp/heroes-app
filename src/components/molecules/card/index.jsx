@@ -5,12 +5,8 @@ import { Button } from '../../atoms/button'
 export const Card = ({
     character, 
     img, 
-    powerstats, 
+    orientation, 
     preview, 
-    // funcDetails, 
-    // funcAdd, 
-    // funcDelete, 
-    // funcRemove
     methodAdd,
     methodRemove
 }) => {
@@ -19,7 +15,7 @@ export const Card = ({
             <div className="row g-0">
                 <div className="col-md-4">
                     <img 
-                        src="https://media1.giphy.com/media/jmpmMqEAkvIzX7hstX/giphy.gif?cid=bba0826bepiakkfb3u69d0judbnl18fm2use6hwoqxc9p3pr&rid=giphy.gif&ct=g" 
+                        src={img}
                         className="img-fluid rounded-start"
                         style={{
                             height: "100%",
@@ -31,7 +27,10 @@ export const Card = ({
                 <div className="col-md-8 d-flex align-items-center">
                     <div className="card-body">
                         <Typography styles="card-title" text={`Heroe: ${character}`}/>
-                        <Typography styles="card-text" text={`Poder: Super fuerza`} />
+                        <Typography 
+                            styles="card-text" 
+                            text={`Orientación: ${orientation === 'good' ? 'Buena' : 'Mala'}`} 
+                        />
                         <div className="d-flex  justify-content-around">
                             <Button 
                                 text={preview ? 'Agregar' : 'Detalles'}
