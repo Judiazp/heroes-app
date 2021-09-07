@@ -33,6 +33,7 @@ export const AddTeam = ({ setListTeams, listTeams}) => {
             addTeam(values.nameTeam)  
         }
     })
+    //https://www.youtube.com/watch?v=AXzuRJhAu_s rutas privadas
 
     return (
         <div className="row mt-5 d-flex flex-column justify-content-center align-items-center">

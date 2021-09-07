@@ -12,8 +12,6 @@ export const Home = () => {
         localStorage.setItem('listTeam', JSON.stringify(listTeams))
     }, [listTeams])
 
-    console.log(listTeams);
-
     return (
         <div>
             <Header logueado={true} />
