@@ -2,11 +2,15 @@ import React from 'react'
 import { Input } from '../../../atoms/input';
 import { Typography } from '../../../atoms/typography';
 import { Button } from '../../../atoms/button';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import axios from 'axios';
+import { useContext } from "react"
+import { AuthContext } from '../../../../context/auth/auth';
 
 export const FormLogin = () => {
+
+    const {setAuthToken} = useContext(AuthContext)
 
     const formik = useFormik({
         initialValues: {
@@ -18,7 +22,15 @@ export const FormLogin = () => {
             password: Yup.string().required('Campo requerido')
         }),
         onSubmit: values => {
-            alert(JSON.stringify(values, null, 2))
+            axios({
+                method: 'POST',
+                url: 'http://challenge-react.alkemy.org/',
+                data: values
+            }).then(({data}) => {
+                const {token} = data
+                setAuthToken(token)
+            })
+            .catch(error => console.log(error))
         }
     })
 
