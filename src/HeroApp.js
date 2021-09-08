@@ -30,9 +30,7 @@ const HeroApp = () => {
             }}>
                 <Router>
                     <Switch>
-                        <Route exact path="/">
-                            <Login />
-                        </Route>
+                        <Route exact path="/" component={Login} />
                         <PrivateRoute exact path="/home" component={Home}/>
                     </Switch>
                     { authToken ? <Redirect to="/home" /> : <Redirect to="/" /> }

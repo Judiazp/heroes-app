@@ -25,6 +25,7 @@ export const Home = () => {
                 />
                 <Team 
                     listTeams={listTeams}
+                    setListTeams={setListTeams}
                 />
             </div>
         </div>

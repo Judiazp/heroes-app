@@ -1,15 +1,11 @@
 import React from 'react'
 import { Button } from '../../atoms/button'
 import { Input } from '../../atoms/input'
-// import { Card } from '../card'
 import { Typography } from '../../atoms/typography'
 import { useFormik } from 'formik';
-// import { SearchHero } from './searchHero'
 import * as Yup from 'yup';
 
 export const AddTeam = ({ setListTeams, listTeams}) => {
-
-    // const [error, setError] = useState(false)
 
     const addTeam = (nameTeam) => {
         const newTeam = {
@@ -33,11 +29,10 @@ export const AddTeam = ({ setListTeams, listTeams}) => {
             addTeam(values.nameTeam)  
         }
     })
-    //https://www.youtube.com/watch?v=AXzuRJhAu_s rutas privadas
 
     return (
         <div className="row mt-5 d-flex flex-column justify-content-center align-items-center">
-            <div className="col-4 d-flex flex-column justify-content-center align-items-center">
+            <div className="col-12 d-flex flex-column justify-content-center align-items-center">
                 <Typography
                     styles="h4 mt-3 mb-3"
                     text="Crea un equipo"

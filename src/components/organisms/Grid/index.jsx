@@ -4,56 +4,64 @@ import { Typography } from '../../atoms/typography'
 import { Button } from '../../atoms/button'
 import { SearchHero } from '../../molecules/forms/searchHero'
 
-export const GridHero = ({ nameTeam, id }) => {
+export const GridHero = ({ nameTeam, id, deleteTeam }) => {
     
-    const initialValueTeam = JSON.parse(localStorage.getItem(`team: ${id}`)) || {heros: [], villains: []}
-
+    const initialValueTeam = JSON.parse(localStorage.getItem(`team: ${id}`)) || []
     const [team, setTeam] = useState(initialValueTeam)
 
     useEffect(() => {
-        localStorage.setItem(`team: ${id}`, JSON.stringify(team))
-    }, [team])
+        localStorage.setItem(`team: ${id}`, JSON.stringify(team))  
+    }, [team, id])
 
-    const teams = team.heros.concat(team.villains)
+    const deleteHero = (id) => {
+        const newHeros = team.filter(hero => hero.id !== id)
+        setTeam(newHeros)
+    }
+    
+    let powerHero = 0
+    let powerTeam = 0
 
+    team.forEach(hero => {
+        const { intelligence, strength, speed, durability, power, combat } = hero.powerstats
+        powerHero = parseInt(intelligence) + parseInt(strength) + parseInt(speed) + parseInt(durability) + parseInt(power) + parseInt(combat)
+        powerTeam += powerHero
+    })
+    
     return (
-        <div className="row border ">
+        <div className="row d-lex justify-content-center ">  
             <Typography 
-                styles="h4 p-3 text-center"
-                text={nameTeam} 
+                styles="h4 mt-4 text-center"
+                text={`Equipo: ${nameTeam}. Poder del equipo: ${powerTeam}`} 
             />
-
-            {
-                teams.length < 6 &&
-                    <SearchHero  
-                        setTeam={setTeam}
-                        team={team}
-                    />
+            { team.length < 6 &&
+                <SearchHero  
+                    setTeam={setTeam}
+                    team={team}
+                />
             }
-
-            { teams.map(item => {
-                console.log(item.results[0].id.toString());
+            { team.map(item => {
                 return(
-                    <div className=" col-6">
+                    <div className="d-flex justify-content-center col-12 col-md-6 col-xl-6">
                         <Card 
-                            key={item.results[0].id}
-                            character={item.results[0].name}
-                            img={item.results[0].image.url}
-                            orientation={item.results[0].biography.alignment}
-                            methodAdd={(e) => {
-                                e.preventDefault()
-                                console.log('Viendo detalles');
-                            }}
-                            methodRemove={(e) => {
-                                e.preventDefault()
-                                console.log('Eliminando heroe');
-                            }}
+                            key={item.id}
+                            id={item.id}
+                            character={item.name}
+                            powerstats={item.powerstats}
+                            data={item}
+                            img={item.image.url}
+                            deleteHero={deleteHero}
                         />
                     </div>
                 )
             })}
-            <div className="p-3 text-center">
-                <Button text="Ver estadisticas del equipo" />
+            <div className="col-12 mb-3 mt-3 d-flex justify-content-center">
+                <Button 
+                    text="Eliminar equipo"
+                    click={() => {
+                        localStorage.removeItem(`team: ${id}`)
+                        deleteTeam(id)
+                    }}
+                />
             </div>
         </div>
             
