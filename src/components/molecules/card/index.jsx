@@ -1,19 +1,25 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Typography } from '../../atoms/typography'
 import { Button } from '../../atoms/button'
+import { Modal } from '../modal'
 
-export const Card = ({
-    character, 
-    img, 
-    orientation, 
-    preview, 
-    methodAdd,
-    methodRemove
-}) => {
+export const Card = ({ character, id, img, data, deleteHero }) => {
+
+    const [openModal, setOpenModal] = useState(false)
+
+    const {powerstats} = data
+
     return (
         <div className="card m-1" style={{maxWidth: "400px"}}>
+            { openModal && 
+                <Modal
+                    openModal={openModal} 
+                    setOpenModal={setOpenModal} 
+                    details={data}
+                />
+            }
             <div className="row g-0">
-                <div className="col-md-4">
+                <div className="col-12 col-md-4">
                     <img 
                         src={img}
                         className="img-fluid rounded-start"
@@ -24,23 +30,45 @@ export const Card = ({
                         alt="..."
                     />
                 </div>
-                <div className="col-md-8 d-flex align-items-center">
+                <div className="col-12 col-md-8 d-flex align-items-center">
                     <div className="card-body">
                         <Typography styles="card-title" text={`Heroe: ${character}`}/>
                         <Typography 
-                            styles="card-text" 
-                            text={`Orientación: ${orientation === 'good' ? 'Buena' : 'Mala'}`} 
+                            styles="card-text m-1" 
+                            text={`Inteligencia: ${ powerstats.intelligence }`} 
+                        />
+                        <Typography 
+                            styles="card-text m-1" 
+                            text={`Fuerza: ${powerstats.strength}`} 
+                        />
+                        <Typography 
+                            styles="card-text m-1" 
+                            text={`Velocidad: ${powerstats.speed}`} 
+                        />
+                        <Typography 
+                            styles="card-text m-1" 
+                            text={`Durabilidad: ${powerstats.durability}`} 
+                        />
+                        <Typography 
+                            styles="card-text m-1" 
+                            text={`Poder: ${powerstats.power}`} 
+                        />
+                        <Typography 
+                            styles="card-text m-1 mb-2" 
+                            text={`Combate: ${powerstats.combat}`} 
                         />
                         <div className="d-flex  justify-content-around">
                             <Button 
-                                text={preview ? 'Agregar' : 'Detalles'}
+                                text='Detalles'
                                 size="sm"
-                                click={methodAdd}
+                                click={ (e) =>
+                                    setOpenModal(!openModal)
+                                }
                             />
                             <Button 
-                                text={preview ? 'Quitar' : 'Eliminar'}
+                                text='Eliminar'
                                 size="sm"
-                                click={methodRemove}
+                                click={ () => deleteHero(id)}
                             />
                         </div>
                     </div>

@@ -1,12 +1,12 @@
 import React from 'react'
-import { Input } from '../../../atoms/input';
-import { Typography } from '../../../atoms/typography';
-import { Button } from '../../../atoms/button';
+import { Button } from '../../atoms/button';
+import { Typography } from '../../atoms/typography';
+import { Input } from '../../atoms/input';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 import { useContext } from "react"
-import { AuthContext } from '../../../../context/auth/auth';
+import { AuthContext } from '../../../context/auth/auth';
 
 export const FormLogin = () => {
 

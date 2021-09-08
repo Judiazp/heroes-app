@@ -1,7 +1,12 @@
 import React from 'react'
 import { GridHero } from '../../organisms/Grid'
 
-export const Team = ({listTeams}) => {
+export const Team = ({listTeams, setListTeams}) => {
+
+    const deleteTeam = (id) => {
+        const newTeam = listTeams.filter(team => team.id !== id)
+        setListTeams(newTeam)
+    }
 
     return (
         <div
@@ -11,7 +16,7 @@ export const Team = ({listTeams}) => {
                 listTeams.map(item => {
                     return (
                         <div 
-                            className="col-5 m-3 shadow"            
+                            className="col-12 col-xl-5 m-2 shadow"            
                         >
                             <GridHero 
                                 nameTeam={ item.nameTeam }
@@ -19,6 +24,9 @@ export const Team = ({listTeams}) => {
                                 setTeam={item.setTeam}
                                 key={item.id}
                                 id={item.id}
+                                deleteTeam={deleteTeam}
+                                // setListTeams={setListTeams}
+                                // listTeams={listTeams}
                             />
                         </div>
                     )

@@ -8,26 +8,10 @@ import axios from 'axios';
 export const SearchHero = ({team, setTeam}) => {
 
     const addHero = (data) => {
-        if (data.results[0].biography.alignment === 'good') { 
-            if (team.heros.length < 3) {
-                setTeam({
-                    ...team,
-                    heros: [data, ...team.heros]
-                })  
-            } else {
-                console.log('No puedes agregar mas de tres heroes');
-            }
-        }
-        if (data.results[0].biography.alignment === 'bad') { 
-            if (team.villains.length < 3) {
-                setTeam({
-                    ...team,
-                    villains: [data, ...team.villains]
-                })           
-            } else {
-                console.log('No puedes agregar mas de tres villanos');
-            }
-        }
+        setTeam([
+            data,
+            ...team
+        ])           
     }
 
     const formik = useFormik({
@@ -41,7 +25,7 @@ export const SearchHero = ({team, setTeam}) => {
         onSubmit: async values => {
             try {
                 const {data} = await axios.get(`/api/103079892118789/search/${values.hero}`)
-                addHero(data)
+                addHero(data.results[0])
             } catch (error) {
                 console.log(error);
             }
@@ -51,7 +35,7 @@ export const SearchHero = ({team, setTeam}) => {
     return (
         <form 
             onSubmit={formik.handleSubmit}
-            className="d-flex m-3"
+            className="d-flex justify-content-center m-3 col-12"
         >
             <Input 
                 type="text" 
@@ -65,12 +49,13 @@ export const SearchHero = ({team, setTeam}) => {
                 touched={formik.touched.hero}
                 errors={formik.errors.hero}
             />
-            <Button
-                text="Buscar"
-                size="sm"
-                type="submit"
-                // disabled={hero.data ? true : false}
-            />
+            <div>
+                <Button
+                    text="Buscar"
+                    size="sm"
+                    type="submit"
+                />
+            </div>
         </form>
     )
 }
