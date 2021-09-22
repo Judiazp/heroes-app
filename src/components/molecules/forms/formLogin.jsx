@@ -7,10 +7,11 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import { useContext } from "react"
 import { AuthContext } from '../../../context/auth/auth';
+import { Error } from '../../atoms/error';
 
 export const FormLogin = () => {
 
-    const {setAuthToken} = useContext(AuthContext)
+    const {setAuthToken, error, setError} = useContext(AuthContext)
 
     const formik = useFormik({
         initialValues: {
@@ -29,8 +30,9 @@ export const FormLogin = () => {
             }).then(({data}) => {
                 const {token} = data
                 setAuthToken(token)
+                setError(false)
             })
-            .catch(error => console.log(error))
+            .catch(err => setError(!error))
         }
     })
 
@@ -76,6 +78,13 @@ export const FormLogin = () => {
                     type="submit" 
                 />
             </form>
+            {
+                error && (
+                    <div className="mt-3">
+                        <Error message="Usuario o contraseña inválida" />
+                    </div>
+                )
+            }
         </div>
     )
 }
