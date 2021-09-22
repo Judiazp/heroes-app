@@ -31,7 +31,7 @@ export const GridHero = ({ nameTeam, id, deleteTeam }) => {
         <div className="row d-lex justify-content-center ">  
             <Typography 
                 styles="h4 mt-4 text-center"
-                text={`Equipo: ${nameTeam}. Poder del equipo: ${powerTeam}`} 
+                text={`Equipo: ${nameTeam}.`} 
             />
             { team.length < 6 &&
                 <SearchHero  
@@ -54,6 +54,10 @@ export const GridHero = ({ nameTeam, id, deleteTeam }) => {
                     </div>
                 )
             })}
+            <Typography 
+                styles="h4 mt-4 text-center"
+                text={`Poder del equipo: ${powerTeam}`} 
+            />
             <div className="col-12 mb-3 mt-3 d-flex justify-content-center">
                 <Button 
                     text="Eliminar equipo"

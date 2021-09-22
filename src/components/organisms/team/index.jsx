@@ -25,8 +25,6 @@ export const Team = ({listTeams, setListTeams}) => {
                                 key={item.id}
                                 id={item.id}
                                 deleteTeam={deleteTeam}
-                                // setListTeams={setListTeams}
-                                // listTeams={listTeams}
                             />
                         </div>
                     )

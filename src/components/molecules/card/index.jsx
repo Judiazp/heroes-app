@@ -1,11 +1,12 @@
-import React, {useState} from 'react'
+import React, {useContext} from 'react'
 import { Typography } from '../../atoms/typography'
 import { Button } from '../../atoms/button'
 import { Modal } from '../modal'
+import { AuthContext } from '../../../context/auth/auth'
 
 export const Card = ({ character, id, img, data, deleteHero }) => {
 
-    const [openModal, setOpenModal] = useState(false)
+    const {openModal, toggleModal} = useContext(AuthContext)    
 
     const {powerstats} = data
 
@@ -14,7 +15,6 @@ export const Card = ({ character, id, img, data, deleteHero }) => {
             { openModal && 
                 <Modal
                     openModal={openModal} 
-                    setOpenModal={setOpenModal} 
                     details={data}
                 />
             }
@@ -62,7 +62,7 @@ export const Card = ({ character, id, img, data, deleteHero }) => {
                                 text='Detalles'
                                 size="sm"
                                 click={ (e) =>
-                                    setOpenModal(!openModal)
+                                    toggleModal()
                                 }
                             />
                             <Button 
