@@ -4,14 +4,16 @@ import { Typography } from '../../atoms/typography';
 import { Input } from '../../atoms/input';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import axios from 'axios';
-import { useContext } from "react"
-import { AuthContext } from '../../../context/auth/auth';
+
 import { Error } from '../../atoms/error';
+import { useDispatch, useSelector } from 'react-redux';
+import { startLogin } from '../../../actions/auth';
+import { startLoading } from '../../../actions/ui';
 
 export const FormLogin = () => {
 
-    const {setAuthToken, error, setError} = useContext(AuthContext)
+    const dispatch = useDispatch()
+    const {error, loading} = useSelector(state => state.ui)
 
     const formik = useFormik({
         initialValues: {
@@ -22,19 +24,7 @@ export const FormLogin = () => {
             email: Yup.string().email('Email inválido').required('Campo requerido'),
             password: Yup.string().required('Campo requerido')
         }),
-        onSubmit: values => {
-            axios({
-                method: 'POST',
-                url: 'http://challenge-react.alkemy.org/',
-                data: values
-            }).then(({data}) => {
-                console.log(data);
-                const {token} = data
-                setAuthToken(token)
-                setError(false)
-            })
-            .catch(err => setError(!error))
-        }
+        onSubmit: values => dispatch( startLogin(values) )
     })
 
     return (
@@ -75,7 +65,8 @@ export const FormLogin = () => {
                     errors={formik.errors.password}
                 />
                 <Button 
-                    text="Iniciar sesión" 
+                    text={loading ? "Cargando" : "Iniciar sesión"}
+                    disabled={loading}
                     type="submit" 
                 />
             </form>

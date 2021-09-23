@@ -1,49 +1,40 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import { Login } from '../components/pages/login';
 import { Home } from '../components/pages/home';
 import { PrivateRoute } from '../routers/PrivateRoute';
 import { AuthContext } from '../context/auth/auth';
+import { useSelector } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const AppRouter = () => {
 
-    const initialState = JSON.parse(localStorage.getItem("acces-token"))
-    const [authToken, setAuthToken] = useState(initialState)
-    const [openModal, setOpenModal] = useState(false)
-    const [error, setError] = useState(false)
+    
+    // const initialState = JSON.parse(localStorage.getItem("acces-token"))
 
-    const setToken = (data) => {
-        localStorage.setItem("acces-token", JSON.stringify(data));
-        setAuthToken(data)
-    }
+    // const setToken = (data) => {
+    //     localStorage.setItem("acces-token", JSON.stringify(data));
+    // }
 
     const removeToken = () => {
         localStorage.removeItem("acces-token")
-        setAuthToken(null)
     } 
 
-    const toggleModal = () => {
-        setOpenModal(!openModal)
-    }
+
+
+    const { token } = useSelector(state => state.auth )
 
     return (
-        <div className="bg-light">
+        <div came="bg-light">
             <AuthContext.Provider value={{
-                authToken,
-                setAuthToken: setToken,
                 removeToken,
-                toggleModal,
-                openModal,
-                error,
-                setError
             }}>
                 <Router>
                     <Switch>
                         <Route exact path="/" component={Login} />
-                        <PrivateRoute exact path="/home" isAuthToken={authToken} component={Home}/>
+                        <PrivateRoute exact path="/home" isAuthToken={token} component={Home}/>
                     </Switch>
-                    { authToken ? <Redirect to="/home" /> : <Redirect to="/" /> }
+                    { token ? <Redirect to="/home" /> : <Redirect to="/" /> }
                 </Router>
             </AuthContext.Provider>
         </div>
