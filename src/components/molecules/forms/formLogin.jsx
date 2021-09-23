@@ -28,6 +28,7 @@ export const FormLogin = () => {
                 url: 'http://challenge-react.alkemy.org/',
                 data: values
             }).then(({data}) => {
+                console.log(data);
                 const {token} = data
                 setAuthToken(token)
                 setError(false)
