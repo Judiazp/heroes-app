@@ -1,11 +1,17 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Typography } from '../../atoms/typography';
 import { Button } from '../../atoms/button';
-import { AuthContext } from '../../../context/auth/auth';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../../actions/auth';
 
 export const Header = ({logueado}) => {
 
-    const {removeToken} = useContext(AuthContext)
+    const dispatch = useDispatch()
+
+    const handleLogout = () => {
+        dispatch( logout() )
+        localStorage.removeItem("acces-token")
+    }
 
     return (
         <nav className="navbar navbar-light shadow" style={{background: "#FFFFFF"}}>
@@ -25,7 +31,7 @@ export const Header = ({logueado}) => {
                 { logueado && 
                     <Button 
                         text="Cerrar sesión"
-                        click={() => removeToken()} 
+                        click={() => handleLogout()} 
                     /> } 
             </div>
         </nav>
