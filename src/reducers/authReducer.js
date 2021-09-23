@@ -1,8 +1,8 @@
 import { types } from "../types/types";
 
+const initialState = JSON.parse(localStorage.getItem("acces-token")) || {}
 
-
-export const authReducer = (state = {}, action) => {
+export const authReducer = (state = initialState, action) => {
     switch (action.type) {
         case types.login:
             
@@ -11,8 +11,7 @@ export const authReducer = (state = {}, action) => {
             }
 
         case types.logout:
-        
-        return {}
+            return {}
     
         default:
             return state

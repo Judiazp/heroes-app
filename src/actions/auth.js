@@ -14,10 +14,11 @@ export const startLogin = (user) => {
             dispatch( login(token) )
             dispatch( removeErrorAction() )
             dispatch( finishLoading() )
+            localStorage.setItem("acces-token", JSON.stringify(data))
         })
         .catch(() =>{
-            dispatch( setErrorAction(true) )
             dispatch( finishLoading() )
+            dispatch( setErrorAction(true) )
         })
     }
 }
