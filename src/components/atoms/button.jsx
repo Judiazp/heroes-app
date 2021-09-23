@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { Loader } from './loader'
 export const Button = ({text, click, type, size, disabled, margin, handleModal }) => {
     return (
         <button 
@@ -9,7 +9,7 @@ export const Button = ({text, click, type, size, disabled, margin, handleModal }
             disabled={disabled}
 
         >
-            { text }
+            { disabled ? <Loader /> : text }
         </button>
     )
 }

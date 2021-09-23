@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import { Login } from '../components/pages/login';
 import { Home } from '../components/pages/home';
@@ -19,8 +19,6 @@ const AppRouter = () => {
     const removeToken = () => {
         localStorage.removeItem("acces-token")
     } 
-
-
 
     const { token } = useSelector(state => state.auth )
 

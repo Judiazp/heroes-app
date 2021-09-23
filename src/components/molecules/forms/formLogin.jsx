@@ -8,7 +8,6 @@ import * as Yup from 'yup';
 import { Error } from '../../atoms/error';
 import { useDispatch, useSelector } from 'react-redux';
 import { startLogin } from '../../../actions/auth';
-import { startLoading } from '../../../actions/ui';
 
 export const FormLogin = () => {
 
@@ -29,6 +28,13 @@ export const FormLogin = () => {
 
     return (
         <div className="col-12 p-4 shadow-lg rounded-3">
+            {
+                error && (
+                    <div className="mt-3">
+                        <Error message="Usuario o contraseña inválida" />
+                    </div>
+                )
+            }
             <form 
                 className="d-flex flex-column" 
                 style={{
@@ -70,13 +76,6 @@ export const FormLogin = () => {
                     type="submit" 
                 />
             </form>
-            {
-                error && (
-                    <div className="mt-3">
-                        <Error message="Usuario o contraseña inválida" />
-                    </div>
-                )
-            }
         </div>
     )
 }
