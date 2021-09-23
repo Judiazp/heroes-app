@@ -1,13 +1,13 @@
-import React, { useContext } from 'react'
-import { AuthContext } from '../../../context/auth/auth'
+import React from 'react'
+import { useDispatch } from 'react-redux'
+import { closedModal } from '../../../actions/modal'
 import { Button } from '../../atoms/button'
 import './modal.css'
 
-export const Modal = ({details, type}) => {
-
-    const {toggleModal} = useContext(AuthContext)
+export const Modal = ({details}) => {
 
     const { appearance, biography, work} = details
+    const dispatch = useDispatch()
 
     return (
         <div className="content-modal">
@@ -23,7 +23,7 @@ export const Modal = ({details, type}) => {
                 </div>
                 <Button 
                     text="Cerrar"
-                    click={ () => toggleModal() } 
+                    click={ () => dispatch( closedModal()) } 
                 />
             </div>
         </div>

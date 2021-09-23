@@ -1,21 +1,24 @@
-import React, { useContext } from 'react'
-import { Button } from '../../atoms/button'
-import { Input } from '../../atoms/input'
+import React from 'react'
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
-import { AuthContext } from '../../../context/auth/auth';
+import { useSelector, useDispatch } from 'react-redux';
+import { setErrorAction } from '../../../actions/ui';
+import { Button } from '../../atoms/button'
+import { Input } from '../../atoms/input'
 import { Error } from '../../atoms/error';
+
 
 export const SearchHero = ({team, setTeam}) => {
 
-    const {error, setError} = useContext(AuthContext)
+    const dispatch = useDispatch()
+    const { error } = useSelector(state => state.ui)
 
     const addHero = (data) => {
         if (team.map(hero => hero.id).includes(data.id)) {
-            setError(!error)
+            dispatch( setErrorAction(true) )
         } else {
-            setError(false)
+            dispatch( setErrorAction(false) )
             setTeam([
                 data,
                 ...team

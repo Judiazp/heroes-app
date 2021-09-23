@@ -1,20 +1,22 @@
-import React, {useContext} from 'react'
+import React from 'react'
 import { Typography } from '../../atoms/typography'
 import { Button } from '../../atoms/button'
 import { Modal } from '../modal'
-import { AuthContext } from '../../../context/auth/auth'
+import { useDispatch, useSelector } from 'react-redux';
+import { openModal } from '../../../actions/modal'
+
 
 export const Card = ({ character, id, img, data, deleteHero }) => {
 
-    const {openModal, toggleModal} = useContext(AuthContext)    
-
     const {powerstats} = data
+
+    const dispatch = useDispatch()
+    const { open } = useSelector(state => state.modal)
 
     return (
         <div className="card m-1" style={{maxWidth: "400px"}}>
-            { openModal && 
+            { open && 
                 <Modal
-                    openModal={openModal} 
                     details={data}
                 />
             }
@@ -62,7 +64,7 @@ export const Card = ({ character, id, img, data, deleteHero }) => {
                                 text='Detalles'
                                 size="sm"
                                 click={ (e) =>
-                                    toggleModal()
+                                    dispatch( openModal(true) )
                                 }
                             />
                             <Button 
