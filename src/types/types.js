@@ -13,12 +13,12 @@ export const types = {
     uiFinishLoading: '[UI] Finish loading',
 
     //Modal
-    openModal: '[MODAL] Open modal',
-    closedModal: '[MODAL] Closed modal',
+    openModal: '[Modal] Open modal',
+    closedModal: '[Modal] Closed modal',
 
     //Create team
-    createTeam: '[TEAM] Create team',
-    removeTeam: '[TEAM] Remove team',
+    createTeam: '[Team] New team',
+    removeTeam: '[Team] Remove team',
 
     //Add hero
     searchHero: '[Hero] search hero',
