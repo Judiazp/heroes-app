@@ -4,19 +4,25 @@ import { Input } from '../../atoms/input'
 import { Typography } from '../../atoms/typography'
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { startAddTeam } from '../../../actions/newTeam';
+import { useDispatch } from 'react-redux';
+
 
 export const AddTeam = ({ setListTeams, listTeams}) => {
 
-    const addTeam = (nameTeam) => {
-        const newTeam = {
-            nameTeam,
-            id: listTeams.length
-        }
-        setListTeams([
-            newTeam,
-            ...listTeams
-        ])
-    }    
+    const dispatch = useDispatch()
+    
+
+    // const addTeam = (nameTeam) => {
+    //     const newTeam = {
+    //         nameTeam,
+    //         id: listTeams.length
+    //     }
+    //     setListTeams([
+    //         newTeam,
+    //         ...listTeams
+    //     ])
+    // }    
     const formik = useFormik({
         initialValues: {
             nameTeam: '',
@@ -26,7 +32,8 @@ export const AddTeam = ({ setListTeams, listTeams}) => {
                 .required('Campo requerido'),
         }),
         onSubmit: values => {
-            addTeam(values.nameTeam)  
+            // addTeam(values.nameTeam)
+            dispatch( startAddTeam(values.nameTeam) )  
         }
     })
 
