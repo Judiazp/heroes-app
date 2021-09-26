@@ -14,14 +14,14 @@ export const Home = () => {
 
 
     return (
-        <div>
+        <div style={{ backgroundColor: '#F1F1F9' }}>
             <Header logueado={true} />
             <div 
                 className="container-fluid"
                 style={{minHeight: "calc(100vh - 120px)"}}    
             >
                 <SearchHero/>
-                <GridHero />
+                <GridHero array={characters} />
             </div>
         </div>
     )

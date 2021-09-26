@@ -2,6 +2,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { closedModal } from '../../../actions/modal'
 import { Button } from '../../atoms/button'
+
 import './modal.css'
 
 export const Modal = ({details}) => {
@@ -24,7 +25,7 @@ export const Modal = ({details}) => {
                 <Button 
                     text="Cerrar"
                     click={ () => dispatch( closedModal()) } 
-                />
+                /> 
             </div>
         </div>
       
