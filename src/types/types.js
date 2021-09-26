@@ -18,10 +18,11 @@ export const types = {
 
     //Create team
     createTeam: '[Team] New team',
+    updateTeam: '[Team] Update team',
     removeTeam: '[Team] Remove team',
 
     //Add hero
-    searchHero: '[Hero] search hero',
+    addCharacter: '[Hero] add hero',
     removeHero: '[Hero] remove hero'
 
     
