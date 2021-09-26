@@ -11,9 +11,7 @@ export const modalReducer = (state = initialState, action ) => {
                 open: action.payload
             }
         case types.closedModal:
-            return {
-                open: false
-            }   
+            return initialState   
         default:
             return state
     }

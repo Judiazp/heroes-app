@@ -16,15 +16,10 @@ export const types = {
     openModal: '[Modal] Open modal',
     closedModal: '[Modal] Closed modal',
 
-    //Create team
-    createTeam: '[Team] New team',
-    updateTeam: '[Team] Update team',
-    removeTeam: '[Team] Remove team',
-
-    //Add hero
-    addCharacter: '[Hero] add hero',
-    removeHero: '[Hero] remove hero'
-
-    
+    //Character
+    previewCharacter: '[Character] Add preview character',
+    addCharacter: '[Character] add character',
+    removeHero: '[Character] remove character',
+      
     
 }

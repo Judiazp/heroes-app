@@ -1,7 +1,8 @@
 import { types } from "../types/types";
 
 const initialState = {
-    characters: JSON.parse(localStorage.getItem('team')) || []
+    characters: JSON.parse(localStorage.getItem('team')) || [],
+    previewCharacter: []
 }
 
 export const characterReducer = (state = initialState, action) => {
@@ -15,6 +16,12 @@ export const characterReducer = (state = initialState, action) => {
         case types.removeHero:
             return {
                 characters: state.characters.filter(character => character.id !== action.payload)
+            }
+
+        case types.previewCharacter:
+            return {
+                ...state,
+                previewCharacter: action.payload
             }
     
         default:

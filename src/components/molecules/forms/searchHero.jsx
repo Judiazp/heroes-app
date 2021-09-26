@@ -5,16 +5,16 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Button } from '../../atoms/button'
 import { Input } from '../../atoms/input'
 import { Error } from '../../atoms/error';
-import { startAddCharacter } from '../../../actions/newHero';
+import { startAddPreview } from '../../../actions/newHero';
 import { Typography } from '../../atoms/typography';
-
+import { GridHero } from '../../organisms/Grid';
+import './forms.css'
 
 export const SearchHero = () => {
 
     const dispatch = useDispatch()
     const {error, loading, msgError} = useSelector(state => state.ui)
-    const {characters} = useSelector(state => state.character)
-
+    const {characters, previewCharacter} = useSelector(state => state.character)
 
     const formik = useFormik({
         initialValues: {
@@ -25,38 +25,48 @@ export const SearchHero = () => {
                 .required('Campo requerido')
         }),
         onSubmit: values => {
-            dispatch( startAddCharacter(values.hero) )
+            dispatch( startAddPreview(values.hero) )
+            formik.resetForm()
         }
     })
 
     return (
         <div>
-
             { characters.length < 6 ?
                 <form 
                     onSubmit={formik.handleSubmit}
-                    className="d-flex justify-content-center mt-5 mb-5 col-12 shadow w-25 m-auto p-4"
+                    className="d-flex flex-column mt-5  mb-5 shadow w-25 m-auto p-4"
                 >
-                    <Input 
-                        type="text" 
-                        placeholder="Busca un personaje"
-                        margin="me-3"
-                        name="hero"
-                        id="hero"
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        value={formik.values.hero}
-                        touched={formik.touched.hero}
-                        errors={formik.errors.hero}
-                    />
-                    <div>
-                        <Button
-                            text="Buscar"
-                            size="sm"
-                            type="submit"
-                            disabled={loading}
+                    <div className="d-flex mb-3 m-auto">
+                        <Input 
+                            type="text" 
+                            placeholder="Busca un personaje"
+                            margin="me-3"
+                            name="hero"
+                            id="hero"
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            value={formik.values.hero}
+                            touched={formik.touched.hero}
+                            errors={formik.errors.hero}
                         />
-                    </div>
+                        <div>
+                            <Button
+                                text="Buscar"
+                                size="sm"
+                                type="submit"
+                                disabled={loading}
+                            />
+                        </div>
+                    </div>    
+
+                    {
+                        error && (
+                            <div className="text-center">
+                                <Error message={`${msgError}`} />
+                            </div>
+                        )
+                    }
                 </form>
 
                 : <div className="d-flex alert-success justify-content-center mt-5 mb-5 col-12 shadow w-25 m-auto p-4">
@@ -66,13 +76,13 @@ export const SearchHero = () => {
                     />
                 </div> 
             }
-            {
-                error && (
-                    <div className="w-50 text-center m-auto">
-                        <Error message={`${msgError}`} />
-                    </div>
-                )
-            }
+
+            <div 
+                className="w-50 m-auto p-3"
+            >
+                <GridHero array={previewCharacter} preview={true} />
+            </div> 
+               
         </div>
     )
 }

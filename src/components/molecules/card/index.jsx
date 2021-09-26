@@ -3,22 +3,26 @@ import { Typography } from '../../atoms/typography'
 import { Button } from '../../atoms/button'
 import { Modal } from '../modal'
 import { useDispatch, useSelector } from 'react-redux';
-import { openModal } from '../../../actions/modal'
 import { removeCharacter } from '../../../actions/newHero';
 
 
-export const Card = ({ character, id, img, data }) => {
+export const Card = ({character, preview, id, img, data }) => {
 
     const {powerstats, biography} = data
 
     const dispatch = useDispatch()
     const { open } = useSelector(state => state.modal)
 
+    const actionButton = () => {
+        preview ? console.log('Agregando') : dispatch( removeCharacter(id) )
+    }
+
+
     return (
-        <div className="card m-2" 
+        <div className="card m-2 shadow rounded" 
             style={{
                 maxWidth: "250px",
-                maxHeight: "500px"
+                maxHeight: preview ? "300px" : "500px",
             }}
         >
             { open && 
@@ -36,7 +40,7 @@ export const Card = ({ character, id, img, data }) => {
                 }} 
                 alt="..."
             />
-            <div className="card-body row">
+            <div className="card-body">
                 <Typography 
                     styles={`
                         card-title 
@@ -46,44 +50,62 @@ export const Card = ({ character, id, img, data }) => {
                     `}
                     text={biography.alignment === 'good' ? 'Heroe' : 'Villano'}
                 />
-                <Typography styles="card-title text-center alert-info" text={` ${character}`}/>
-                    <Typography 
-                        styles="card-text m-1" 
-                        text={`Inteligencia: ${ powerstats.intelligence }`} 
-                    />
-                    <Typography 
-                        styles="card-text m-1" 
-                        text={`Fuerza: ${powerstats.strength}`} 
-                    />
-                    <Typography 
-                        styles="card-text m-1" 
-                        text={`Velocidad: ${powerstats.speed}`} 
-                    />
-                    <Typography 
-                        styles="card-text m-2" 
-                        text={`Durabilidad: ${powerstats.durability}`} 
-                    />
-                    <Typography 
-                        styles="card-text m-1" 
-                        text={`Poder: ${powerstats.power}`} 
-                    />
-                    <Typography 
-                        styles="card-text m-1 mb-2" 
-                        text={`Combate: ${powerstats.combat}`} 
-                    />
+                {
+                    preview && (
+                        <Typography 
+                            styles="card-text m-3 h4 text-center" 
+                            text={character} 
+                        />
+                    )
+                }
+
+                {
+                    !preview && (
+                        <div>
+                            <Typography 
+                                styles="card-text m-1" 
+                                text={`Inteligencia: ${ powerstats.intelligence }`} 
+                            />
+                            <Typography 
+                                styles="card-text m-1" 
+                                text={`Fuerza: ${powerstats.strength}`} 
+                            />
+                            <Typography 
+                                styles="card-text m-1" 
+                                text={`Velocidad: ${powerstats.speed}`} 
+                            />
+                            <Typography 
+                                styles="card-text m-1" 
+                                text={`Durabilidad: ${powerstats.durability}`} 
+                            />
+                            <Typography 
+                                styles="card-text m-1" 
+                                text={`Poder: ${powerstats.power}`} 
+                            />
+                            <Typography 
+                                styles="card-text m-1 mb-2" 
+                                text={`Combate: ${powerstats.combat}`} 
+                            />
+                        </div>
+                    )
+                }
                 <div className="d-flex  justify-content-around">
                     <Button 
-                        text='Detalles'
+                        text={preview ? 'Agregar al equipo' : 'Detalles' }
                         size="sm"
-                        click={ (e) =>
-                            dispatch( openModal(true) )
+                        click={ () =>
+                            actionButton()
                         }
                     />
-                    <Button 
-                        text='Eliminar'
-                        size="sm"
-                        click={ () => dispatch( removeCharacter(id) )}
-                    />
+                    {
+                        !preview && (
+                            <Button 
+                                text='Eliminar'
+                                size="sm"
+                                click={ () => dispatch( removeCharacter(id) )}
+                            />
+                        )
+                    }
                 </div>
             </div>
         </div>
