@@ -1,9 +1,9 @@
 import { types } from "../types/types"
 
-export const setErrorAction = (err) => {
+export const setErrorAction = (msgError) => {
     return {
         type: types.uiSetError,
-        payload: err
+        payload: msgError
     }
 }
 

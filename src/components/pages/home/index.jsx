@@ -1,32 +1,27 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { Header } from '../../molecules/header'
-import { AddTeam } from '../../molecules/forms/AddTeam'
-import { Team } from '../../organisms/team'
+import { SearchHero } from '../../molecules/forms/searchHero'
+import { useSelector } from 'react-redux'
+import { GridHero } from '../../organisms/Grid'
 
 export const Home = () => {
 
-    const initialValueRecords = JSON.parse(localStorage.getItem('listTeam')) || []
-    const [listTeams, setListTeams] = useState(initialValueRecords)
+    const {characters} = useSelector(state => state.character)
 
     useEffect(() => {
-        localStorage.setItem('listTeam', JSON.stringify(listTeams))
-    }, [listTeams])
+        localStorage.setItem('team', JSON.stringify(characters))
+    }, [characters])
+
 
     return (
         <div>
             <Header logueado={true} />
             <div 
                 className="container-fluid"
-                style={{minHeight: "calc(100vh - 70px)"}}    
+                style={{minHeight: "calc(100vh - 120px)"}}    
             >
-                <AddTeam 
-                    setListTeams={setListTeams} 
-                    listTeams={listTeams}
-                />
-                <Team 
-                    listTeams={listTeams}
-                    setListTeams={setListTeams}
-                />
+                <SearchHero/>
+                <GridHero />
             </div>
         </div>
     )
