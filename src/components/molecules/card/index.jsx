@@ -2,7 +2,7 @@ import React from 'react'
 import { Typography } from '../../atoms/typography'
 import { Button } from '../../atoms/button'
 import { useDispatch, useSelector } from 'react-redux';
-import { addHero, addVillains, removeHero, removeVillains } from '../../../actions/newHero';
+import { addHero, addVillains, removeHero, removeVillains } from '../../../actions/newCharacter';
 import { useState } from 'react';
 import { Modal } from '../modal';
 import { removePreviewCharacter } from '../../../actions/searchCharacter';
@@ -61,7 +61,6 @@ export const Card = ({character, preview, id, img, data }) => {
                     setOpenDetails={setOpenDetails}
                 />
             }
-
             <img 
                 src={img}
                 className="img-fluid rounded-start"

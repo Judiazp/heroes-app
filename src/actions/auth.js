@@ -23,7 +23,6 @@ export const startLogin = (user) => {
     }
 }
 
-
 export const login = (token) => {
     return {
         type: types.login,

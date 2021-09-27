@@ -34,9 +34,7 @@ export const characterReducer = (state = initialState, action) => {
         case types.previewCharacter:
             return {
                 ...state,
-                previewCharacter: 
-                    action.payload, 
-                    // ...state.previewCharacter] 
+                previewCharacter: action.payload
             }
     
         default:

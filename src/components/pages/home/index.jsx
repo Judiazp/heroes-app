@@ -3,9 +3,9 @@ import { Header } from '../../molecules/header'
 import { SearchHero } from '../../molecules/forms/searchHero'
 import { useSelector } from 'react-redux'
 import { GridHero } from '../../organisms/Grid'
-import './home.css'
 import { AddButton } from '../../atoms/addButton'
 import { PowerstatsTeam } from '../../molecules/powerstatsTeam'
+import './home.css'
 
 export const Home = () => {
 
@@ -20,12 +20,7 @@ export const Home = () => {
     }, [character])
 
     return (
-        <div 
-            style={{ 
-                backgroundColor: '#F1F1F9',
-                height: '100vh'
-            }}
-        >
+        <div style={{ height: '100vh'}}>
             <Header logueado={true} />
             <div className="content">
                 { open && <SearchHero/> }

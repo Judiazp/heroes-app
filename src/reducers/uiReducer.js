@@ -14,20 +14,24 @@ export const uiReducer = (state = initialState, action ) => {
                 error: true,
                 msgError: action.payload
             }
+
         case types.uiRemoveError:
             return {
                 ...state,
                 error: false,
                 msgError: ''
             }
+            
         case types.uiStartLoading:
             return {
                 loading: true,  
             }
+
         case types.uiFinishLoading:
             return {
                 loading: false,
             }
+
         default:
             return state
     }

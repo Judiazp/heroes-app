@@ -8,6 +8,7 @@ import { Error } from '../../atoms/error';
 import { startAddPreview } from '../../../actions/searchCharacter';
 import { GridHero } from '../../organisms/Grid';
 import { closedModal } from '../../../actions/modal';
+import { Typography } from '../../atoms/typography';
 import './forms.css'
 
 export const SearchHero = () => {
@@ -43,7 +44,7 @@ export const SearchHero = () => {
                     >
                         <div>
                             <div
-                                className="btn btn-danger"
+                                className="btn btn-danger mt-3"
                                 onClick={
                                     () => {
                                         dispatch( closedModal() )
@@ -53,7 +54,7 @@ export const SearchHero = () => {
                                 x
                             </div>
                         </div>
-                        <div className="d-flex mb-3 m-auto">
+                        <div className="content-form">
                             <Input 
                                 type="text" 
                                 placeholder="Busca un personaje"
@@ -66,7 +67,7 @@ export const SearchHero = () => {
                                 touched={formik.touched.hero}
                                 errors={formik.errors.hero}
                             />
-                            <div>
+                            <div className="content-btn">
                                 <Button
                                     text="Buscar"
                                     size="sm"
@@ -83,16 +84,21 @@ export const SearchHero = () => {
                             )
                         }
                         <div 
-                            className="d-flex justify-content-center"
+                            className="content-cards-characters"
                         >
-                            <GridHero array={searchCharacter} preview={true} />
+                            {
+                                searchCharacter.length === 0 ?
+                                    <Typography 
+                                        text="Busca un personaje"
+                                        styles="h5" 
+                                    />
+                                
+                                : <GridHero array={searchCharacter} preview={true} />
+                            }
                         </div>
-
-
                     </form>                   
                 </div>
-            }    
-                
+            }                
         </>
     )
 

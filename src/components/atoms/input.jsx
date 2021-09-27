@@ -11,7 +11,8 @@ export const Input = ({
     onBlur,
     value,
     touched,
-    errors }) => {
+    errors 
+}) => {
 
     return (
         <div className={`col-auto ${margin}`}>
