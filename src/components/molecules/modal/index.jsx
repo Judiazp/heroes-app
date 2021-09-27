@@ -1,14 +1,10 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
-import { closedModal } from '../../../actions/modal'
 import { Button } from '../../atoms/button'
-
 import './modal.css'
 
-export const Modal = ({details}) => {
+export const Modal = ({details, setOpenDetails}) => {
 
     const { appearance, biography, work} = details
-    const dispatch = useDispatch()
 
     return (
         <div className="content-modal">
@@ -24,7 +20,7 @@ export const Modal = ({details}) => {
                 </div>
                 <Button 
                     text="Cerrar"
-                    click={ () => dispatch( closedModal()) } 
+                    click={ () => setOpenDetails(false) } 
                 /> 
             </div>
         </div>
