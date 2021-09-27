@@ -27,7 +27,12 @@ export const FormLogin = () => {
     })
 
     return (
-        <div className="col-12 p-4 shadow-lg rounded-3">
+        <div 
+            className="col-12 p-4 shadow-lg rounded-3"
+            style={{
+                background: "#FFFFFF",
+            }}
+        >
             {
                 error && (
                     <div className="mt-3">
@@ -37,9 +42,6 @@ export const FormLogin = () => {
             }
             <form 
                 className="d-flex flex-column" 
-                style={{
-                    background: "#FFFFFF",
-                }}
                 onSubmit={formik.handleSubmit}
             >
                 <Typography 
