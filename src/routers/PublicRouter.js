@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
-
 export const PublicRoute = ({
     isAuthenticated,
     component: Component,
@@ -14,8 +13,7 @@ export const PublicRoute = ({
                 ( isAuthenticated )
                     ? ( <Redirect to="/home" /> )
                     : ( <Component { ...props } /> )
-            )}
-        
+            )}  
         />
     )
 }

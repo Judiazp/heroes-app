@@ -1,5 +1,6 @@
 import React from 'react'
 import { Loader } from './loader'
+
 export const Button = ({text, click, type, size, disabled, margin, handleModal }) => {
     return (
         <button 

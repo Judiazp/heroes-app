@@ -3,7 +3,7 @@ import { FormLogin } from '../../molecules/forms/formLogin';
 import { Header } from '../../molecules/header';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-export const Login = ({history}) => {
+export const Login = () => {
 
     return (
         <>
@@ -13,7 +13,7 @@ export const Login = ({history}) => {
                 style={{height: "calc(100vh - 70px)"}}
             >
                 <div className="col-4">
-                    <FormLogin history={history} />
+                    <FormLogin />
                 </div>
             </div>
         </>

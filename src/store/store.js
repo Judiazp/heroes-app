@@ -14,7 +14,6 @@ const reducers = combineReducers({
     modal: modalReducer,
     character: characterReducer,
     searchCharacter: searchCharacterReducer
-
 })
 
 export const store = createStore(
