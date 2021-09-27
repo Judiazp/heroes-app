@@ -1,8 +1,13 @@
 import React from 'react'
 import { Card } from '../../molecules/card'
+// import { openModal } from '../../../actions/modal'
+// import { useDispatch } from 'react-redux'
+
 
 export const GridHero = ({array, preview}) => {
     
+    // const dispatch = useDispatch()
+
     // let powerHero = 0
     // let powerTeam = 0
 
