@@ -14,12 +14,13 @@
     justify-content: center;
     flex-direction: column;
     max-width: 50%;
+    max-height: 80%;
     padding: 2em;
     border-radius: 7px;
     background-color: #FFFFFF;
     box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.4);
     position: relative;
-    top: 40%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -41,8 +42,7 @@
     margin-top: 2em;
 }
 
-@media (max-width: 600px) {
-
+@media (max-width: 850px) {
     .content-form {
         flex-direction: column;
         margin-top: 1em;
@@ -63,16 +63,5 @@
     .content-btn {
         margin-top: 1em;
         margin-bottom: 1em;
-    }
-}
-
-@media (max-width: 850px) {
-    .preview-modal {
-        width: 70%;
-        padding: 30px;
-        border-radius: 7px;
-        margin: 0px;
-        max-height: 300px;
-        top: 50%;
     }
 }
