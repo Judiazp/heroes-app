@@ -17,8 +17,11 @@ export const types = {
     closedModal: '[Modal] Closed modal',
 
     //Character
-    previewCharacter: '[Character] Add preview character',
-    addCharacter: '[Character] add character',
+    searchCharacter: '[Character] Search character',
+    removePreviewCharacter: '[Character] Remove preview Character',
+    addHeroes: '[Character] Add heroes',
+    addVillains: '[Character] Add villains',
+    removeVillains: '[Character] Remove villains',
     removeHero: '[Character] remove character',
       
     
