@@ -23,6 +23,4 @@ export const types = {
     addVillains: '[Character] Add villains',
     removeVillains: '[Character] Remove villains',
     removeHero: '[Character] remove character',
-      
-    
 }
